@@ -1,5 +1,6 @@
 .App {
-  background-color: red;
+  background-image: url(./assets/gradient.jpg);
+  background-size: 100% 100%
 }
 
 .App-logo {

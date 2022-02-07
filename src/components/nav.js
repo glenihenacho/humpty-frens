@@ -15,6 +15,7 @@ import { AppBar,
     Toolbar ,
     Typography,
     useScrollTrigger } from '@mui/material';
+import Logo from '../assets/title.png'
 
 function ElevationScroll(props) {
     const { children, window } = props;
@@ -23,12 +24,13 @@ function ElevationScroll(props) {
     // This is only being set here because the demo is in an iframe.
     const trigger = useScrollTrigger({
         disableHysteresis: true,
-        threshold: 0,
+        threshold: 20,
         target: window ? window() : undefined,
     });
     
     return React.cloneElement(children, {
         elevation: trigger ? 4 : 0,
+        style: { backgroundColor: `rgba(0, 0, 255, ${trigger ? '.3' : '0'})` }
     });
 }
 
@@ -46,100 +48,69 @@ function Nav(props) {
     <Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Container maxWidth="xl">
             <Toolbar disableGutters>
-                <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                >
-                LOGO
-                </Typography>
-
-                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={() => {}}
-                    color="inherit"
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    id="menu-appbar"
-                    anchorEl={() => <div />}
-                    anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                    }}
-                    open={false}
-                    onClose={() => {}}
-                    sx={{
-                    display: { xs: 'block', md: 'none' },
-                    }}
-                >
-                    {['1', '2'].map((page) => (
-                    <MenuItem key={page} onClick={() => {}}>
-                        <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
+                <Box sx={{ flex: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {['Story', 'Roadmap', 'Team'].map((page) => (
+                        <Button
+                            key={page}
+                            onClick={() => {}}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            {page}
+                        </Button>
                     ))}
-                </Menu>
                 </Box>
-                <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                >
-                LOGO
-                </Typography>
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {['1', '2'].map((page) => (
-                    <Button
-                    key={page}
-                    onClick={() => {}}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                <Box sx={{ flex: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={() => {}}
+                        color="inherit"
                     >
-                    {page}
-                    </Button>
-                ))}
+                        <MenuIcon />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={() => <div />}
+                        anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                        }}
+                        open={false}
+                        onClose={() => {}}
+                        sx={{
+                        display: { xs: 'block', md: 'none' },
+                        }}
+                    >
+                        {['1', '2'].map((page) => (
+                        <MenuItem key={page} onClick={() => {}}>
+                            <Typography textAlign="center">{page}</Typography>
+                        </MenuItem>
+                        ))}
+                    </Menu>
                 </Box>
-
-                <Box sx={{ flexGrow: 0 }}>
-                <IconButton onClick={() => {}} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-                <Menu
-                    sx={{ mt: '45px' }}
-                    id="menu-appbar"
-                    anchorEl={() => <div />}
-                    anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                    }}
-                    open={false}
-                    onClose={() => {}}
+                <div
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}
                 >
-                    {['1', '2'].map((setting) => (
-                    <MenuItem key={setting} onClick={() => {}}>
-                        <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                    ))}
-                </Menu>
+                    <img src={Logo} style={{ height: 30, objectFit: 'contain' }}/>
+                </div>
+
+                <Box sx={{ justifyContent: 'flex-end', display: 'flex', flex: 1 }}>
+                    <Button style={{ backgroundColor: 'yellow' }}>
+                        Mint
+                    </Button>
                 </Box>
             </Toolbar>
             </Container>
