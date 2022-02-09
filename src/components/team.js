@@ -6,10 +6,28 @@ import '../App.css';
 import egg from '../assets/0001.jpg';
 import Title from '../assets/team.png';
 
-const members = [{ description: 'Idea Fren', handle: '@humptyJ', pfp: egg },
-    { description: 'Code Fren', handle: '@humptyW', pfp: egg },
-    { description: 'Utility Fren', handle: '@humptyG', pfp: egg },
-    { description: 'Best Fren', handle: '@humptyA', pfp: egg }]
+const members = [
+    { 
+        "description": 'Idea Fren', 
+        "handle": '@humptyJ', 
+        "pfp": egg 
+    },
+    { 
+        "description": 'Code Fren', 
+        "handle": '@humptyW',  
+        "pfp": egg 
+    },
+    { 
+        "description": 'Utility Fren',
+        "handle": '@humptyG', 
+        "pfp": egg 
+    },
+    { 
+        "description": 'Best Fren', 
+        "handle": '@humptyA',  
+        "pfp": egg 
+    }
+]
 
 function Team() {
     const { height, width } = useWindowDimensions();
@@ -21,7 +39,6 @@ function Team() {
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    height,
                     justifyContent: 'space-around',
                     width
                 }}

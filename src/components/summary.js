@@ -5,25 +5,22 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 import preview from '../assets/0001.jpg'
 import Title from '../assets/story.png'
 
-function Text() {
-    return <div 
-        style={{ display: 'flex', 
-            flex: 1, 
-            flexDirection: 'column', 
-            justifyContent: 'space-between' }}
+function Text(shrink) {
+    return <Stack
+        spacing={10}
+        sx={{ display: 'flex', flex: 1, textAlign: shrink ? 'center' : null }}
     >
         <Typography variant="h6" color="white">
-            Humpty Frens is a community driven collection of 10K randomly generated
-            NFTs on the Ethereum blockchain. These tokens will symbolize victory 
-            in adversity for a frenly mint price of 0.017 ETH. Find out more on 
-            our Discord!
+            Humpty Frens is a community driven collection of 10K 
+            eggs to remind you that it's not about how hard you fall, but more so about
+            how fast you get up. Find out more on our Discord!
         </Typography>
         <div>
             <Button style={{ backgroundColor: 'yellow', padding: 10  }}>
                 Join Our Server
             </Button>
         </div>
-    </div>
+    </Stack>
 }
 
 function Summary() {
@@ -31,21 +28,17 @@ function Summary() {
     const margin = width * 0.01;
 
     return (
-        <div>
-            <img src={Title} style={{ }} />
-            <div style={{ alignItems: 'center', display: 'flex', height, width }}>
+        <div style={{ paddingBottom: 200 }}>
+            <img src={Title} style={{ paddingBottom: 20 }} />
+            <div style={{ display: 'flex', width }}>
                 <Box
                     sx={{ display: { xs: 'none', md: 'flex' },
                         marginLeft: margin,
                         marginRight: margin,
                         width: width - (margin * 2) }}
                 >
-                    <Stack 
-                        sx={{ display: 'flex', flex: 1, justifyContent: 'space-between' }}
-                    >
-                        {Text()}
-                    </Stack>
-                    <div style={{ display: 'flex', justifyContent: 'center', flex: 1 }}>
+                    {Text()}
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', flex: 1 }}>
                         <img
                             src={preview}
                             style={{ borderRadius: 20,
@@ -55,12 +48,21 @@ function Summary() {
                         />
                     </div>
                 </Box>
-                <Stack sx={{ display: { xs: 'block', md: 'none' } }}>
-                    {Text()}
+                <Stack
+                    spacing={10}
+                    sx={{ display: { xs: 'flex', md: 'none' }, 
+                    marginLeft: margin, 
+                    marginRight: margin }}
+                >
                     <img
-                        src='https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                        style={{ flex: 1, alignSelf: 'center', objectFit: 'cover' }}
+                        src={preview}
+                        style={{ alignSelf: 'center',
+                            borderRadius: 20,
+                            height: width / 2, 
+                            objectFit: 'contain',
+                            width: width / 2 }}
                     />
+                    {Text(true)}
                 </Stack>
             </div>
         </div>

@@ -1,15 +1,25 @@
 import React, {useContext} from 'react';
 import './App.css';
-import { IconButton, TextField, Typography, Button } from '@mui/material';
+// import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Link } from "react-router-dom";
 import Land from './views/land';
+import MintPge from './views/mint/mintPge';
 import Summary from './components/summary';
 import Team from './components/team';
+import { TransactionProvider } from './context/TransactionContext';
 
 function App() {
 
   return (
     <div className="App">
-      <Land />
+      <TransactionProvider>
+        <Router>
+          <Routes>
+              <Route exact path = "/" element={ <Land/> } />
+              <Route exact path = "/mint" element={ <MintPge/> } />
+          </Routes>
+        </Router>
+      </TransactionProvider>
     </div>
   );
 }

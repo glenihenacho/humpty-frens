@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import './App.css';
 import { TransactionContext } from './context/TransactionContext';
 import {IconButton, TextField, Typography, Button} from '@mui/material';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 
 
@@ -14,16 +14,12 @@ function App() {
 
   return (
       <div className="App">
-        {!currentAccount && ( 
-          <IconButton aria-label="delete" size="large" onClick={connectWallet}>
-                < AccountBalanceWalletIcon fontSize="inherit" />
-          </IconButton>
-        )}
-        {currentAccount && ( 
-          <Button aria-label="delete" size="large" onClick={connectWallet}>
-                <Typography> Wallet is connected </Typography>
-          </Button>
-        )}
+        
+        {currentAccount ? <Button aria-label="delete" size="large" onClick={connectWallet}>
+          <Typography> Wallet is connected </Typography>
+        </Button> : <IconButton aria-label="delete" size="large" onClick={connectWallet}>
+          <WalletIcon fontSize="inherit" />
+        </IconButton>}
 
         <div>
           <TextField id="outlined-basic" label="addess to" variant="standard" handleChange={handleChange} />
